@@ -4,7 +4,7 @@
    ========================================================================== */
 
 window.STIMULI_CONFIG = {
-  // Where the stimulus folders live, relative to the page (pages/ is one level down).
+  // Where the stimulus folders live, relative to the page (each page folder is one level down).
   basePath: "../stimuli/",
 
   // Levels run 1 (noisiest) to maxLevel (closest to the optimum). Level 0 is the optimum pair.

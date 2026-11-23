@@ -24,8 +24,8 @@ window.SITE = {
 
   // Paths are relative to the site root; layout.js adds "../" on inner pages.
   nav: [
-  { id: "home", label: "About", href: "index.html" },
-  { id: "projects", label: "Projects", href: "pages/projects.html",
+  { id: "home", label: "About", href: "./" },
+  { id: "projects", label: "Projects", href: "projects/",
     children: ["cardiac", "dorsalnet", "v4"] }
 ]
 };

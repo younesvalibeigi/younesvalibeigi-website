@@ -20,7 +20,7 @@
   }).join("");
   nav.innerHTML =
     '<div class="wrap nav__bar">' +
-      '<a class="nav__brand" href="' + root + 'index.html">' + SITE.name + "</a>" +
+      '<a class="nav__brand" href="' + root + './">' + SITE.name + "</a>" +
       '<button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>' +
       '<ul class="nav__links" id="nav-links">' + items + "</ul>" +
     "</div>";
