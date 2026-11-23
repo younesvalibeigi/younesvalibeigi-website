@@ -5,9 +5,9 @@ Plain HTML, CSS and JavaScript. No build step, no installs. Four pages:
 | Page | File |
 |---|---|
 | Home (About, short CV) | `index.html` |
-| Cardiac closed loop (PLOS Comp Bio 2026) | `cardiac/index.html` |
-| Synthesized stimuli (DorsalNet) | `dorsalnet/index.html` |
-| V4 microstimulation and in vivo closed loop | `v4/index.html` |
+| Cardiac closed loop (PLOS Comp Bio 2026) | `projects/cardiac/index.html` |
+| Synthesized stimuli (DorsalNet) | `projects/dorsalnet/index.html` |
+| V4 microstimulation and in vivo closed loop | `projects/v4/index.html` |
 
 ## 1. Run it on your computer
 
@@ -19,7 +19,7 @@ The simulations need WebGL 2, which current Chrome, Edge, Firefox and Safari hav
 
 ```
 index.html
-projects/ cardiac/ dorsalnet/ v4/   one folder per page, each with an index.html
+projects/                   projects hub; projects/cardiac, projects/dorsalnet, projects/v4 (each folder has an index.html)
 assets/
   css/
     base.css                colors, fonts, type scale   (edit colors here)
@@ -107,7 +107,7 @@ python3 tools/build_sim_assets.py
 Model numbers (radius, threshold, grid size, colors, default speed) are at the top of each `app/main.js`; those need no rebuild.
 
 - Open `assets/sim/ca2d/index.html` or `assets/sim/ca3d/index.html` directly to run one on its own.
-- The iframes are in `cardiac/index.html` (search for `try-it`). The loader is `assets/js/pages/sim-embed.js`. An iframe only starts loading when it is close to the screen, and a simulation pauses while it is off screen.
+- The iframes are in `projects/cardiac/index.html` (search for `try-it`). The loader is `assets/js/pages/sim-embed.js`. An iframe only starts loading when it is close to the screen, and a simulation pauses while it is off screen.
 - Changes made to your original code: control bar placed beside the canvas, FPS counter removed, a "Draw" menu and a "Clear blocks" button added (so blocks work on a phone, where there is no Shift key), touch support in 2D, mouse-wheel zoom off by default in 3D (so the page still scrolls), one starting wave, and click positions measured from the canvas's drawn size (in `shared/Abubu/Abubu.js`, marked "Website patch").
 - Where WebGL 2 is missing, the panel says so instead of showing a blank box.
 

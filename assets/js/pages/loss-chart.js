@@ -98,7 +98,7 @@
     var f = document.createElement("figure");
     f.className = "fig";
     f.innerHTML =
-      '<div class="fig__frame"><img src="../' + path + '" alt="' + label + '" data-asset="' + path +
+      '<div class="fig__frame"><img src="' + (document.body.dataset.root || '') + path + '" alt="' + label + '" data-asset="' + path +
       '" data-label="' + label + '"></div><figcaption>' + caption + "</figcaption>";
     return f;
   }

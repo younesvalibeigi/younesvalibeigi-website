@@ -8,11 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/base.css">
-  <link rel="stylesheet" href="../assets/css/layout.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
 </head>
-<body data-root="../" data-page="cardiac" data-accent="cardiac">
+<body data-root="../../" data-page="cardiac" data-accent="cardiac">
   <canvas id="neuron-bg" aria-hidden="true"></canvas>
 
   <div class="page">
@@ -21,7 +21,7 @@
       <section class="page-hero">
         <div class="wrap">
           <div class="page-hero__rule"></div>
-          <p><a href="../projects/">&larr; All projects</a></p>
+          <p><a href="../">&larr; All projects</a></p>
           <h1>Real-time GPU-accelerated coupled cardiac system: Integrating bidirectional interactions between living optogenetic monolayers and computational simulations</h1>
           <p class="page-hero__sub">A dish of cultured mouse cardiac cells and a GPU simulation of cardiac tissue run side by side and respond to each other within milliseconds.</p>
           <ul class="tags" style="margin-top:1.4rem">
@@ -49,7 +49,7 @@
           </div>
           <figure class="fig">
             <div class="fig__frame">
-              <img src="../assets/img/cardiac/fig1_concept.png" alt="Figure 1: a cellular automaton model of a heart with a reentrant wave, a monolayer grown around an obstacle, a fixed-delay loop, and the full coupled system" data-asset="assets/img/cardiac/fig1_concept.png" data-label="Figure 1, concept">
+              <img src="../../assets/img/cardiac/fig1_concept.png" alt="Figure 1: a cellular automaton model of a heart with a reentrant wave, a monolayer grown around an obstacle, a fixed-delay loop, and the full coupled system" data-asset="assets/img/cardiac/fig1_concept.png" data-label="Figure 1, concept">
             </div>
             <figcaption><strong>Fixed delay versus a coupled model.</strong> (A, B) A reentrant wave circling an obstacle in a 3D heart model and in a monolayer. (C) A closed loop with a fixed delay. (D) The full system: signals from the tissue update the model, and the model's predictions drive stimulation.</figcaption>
           </figure>
@@ -72,7 +72,7 @@
             </ol>
             <figure class="fig">
               <div class="fig__frame">
-                <img src="../assets/img/cardiac/fig2_system_overview.png" alt="Figure 2: WebGL simulation, Node.js, microcontroller, LED matrix, cardiac tissue and camera connected in a loop" data-asset="assets/img/cardiac/fig2_system_overview.png" data-label="Figure 2, system overview">
+                <img src="../../assets/img/cardiac/fig2_system_overview.png" alt="Figure 2: WebGL simulation, Node.js, microcontroller, LED matrix, cardiac tissue and camera connected in a loop" data-asset="assets/img/cardiac/fig2_system_overview.png" data-label="Figure 2, system overview">
               </div>
               <figcaption><strong>The loop.</strong> Node.js passes data between the simulation, the camera and the microcontroller over sockets, serial and TCP.</figcaption>
             </figure>
@@ -98,7 +98,7 @@
           </div>
           <figure class="fig">
             <div class="fig__frame">
-              <img src="../assets/img/cardiac/fig6_optical_setup.png" alt="Figure 6: optical layout with Basler camera, DMD projector, Olympus MVX10, Nikon Eclipse Ti-U, LEDs and photodiode" data-asset="assets/img/cardiac/fig6_optical_setup.png" data-label="Figure 6, optical setup">
+              <img src="../../assets/img/cardiac/fig6_optical_setup.png" alt="Figure 6: optical layout with Basler camera, DMD projector, Olympus MVX10, Nikon Eclipse Ti-U, LEDs and photodiode" data-asset="assets/img/cardiac/fig6_optical_setup.png" data-label="Figure 6, optical setup">
             </div>
             <figcaption><strong>Optical setup.</strong> A camera images the monolayer from above through an Olympus MVX10; the LED matrix stimulates from below through a Nikon Eclipse Ti-U. A DMD projector creates artificial waves for validation, and a photodiode measures the light output.</figcaption>
           </figure>
@@ -109,7 +109,7 @@
         <div class="wrap split">
           <figure class="fig">
             <div class="fig__frame">
-              <img src="../assets/img/cardiac/fig3_ca_model.png" alt="Figure 3: simulated planar wave and spiral wave from the cellular automaton model" data-asset="assets/img/cardiac/fig3_ca_model.png" data-label="Figure 3, cellular automaton">
+              <img src="../../assets/img/cardiac/fig3_ca_model.png" alt="Figure 3: simulated planar wave and spiral wave from the cellular automaton model" data-asset="assets/img/cardiac/fig3_ca_model.png" data-label="Figure 3, cellular automaton">
             </div>
             <figcaption><strong>The simulation.</strong> (A) Planar waves. (B) A spiral wave. Color is cell voltage from 0 to 1; r and &theta; are the model's radius of excitability and threshold.</figcaption>
           </figure>
@@ -131,13 +131,13 @@
           <article class="sim-card">
             <h4>2D tissue</h4>
             <p class="sim-card__how"><strong>Drag</strong> across the canvas to stimulate the tissue. <strong>Shift and drag</strong>, or choose "Place block" in the Draw menu, puts down a block that waves cannot cross. A wave that meets the end of a block can curl around it, which is how a spiral wave starts.</p>
-            <iframe data-sim="../assets/sim/ca2d/index.html" title="Live 2D cellular automaton simulation of cardiac tissue" name="ca2d" class="sim-card__frame"></iframe>
+            <iframe data-sim="../../assets/sim/ca2d/index.html" title="Live 2D cellular automaton simulation of cardiac tissue" name="ca2d" class="sim-card__frame"></iframe>
           </article>
 
           <article class="sim-card">
             <h4>3D heart</h4>
             <p class="sim-card__how"><strong>Drag</strong> to rotate the heart. <strong>Double-click</strong> a spot on it to stimulate; holding Ctrl (or Cmd) and moving the mouse stimulates along the path. <strong>Shift and click</strong> places a block. On a phone, double-tap to stimulate and use the Draw menu to place blocks.</p>
-            <iframe data-sim="../assets/sim/ca3d/index.html" title="Live 3D cellular automaton simulation of a heart" name="ca3d" class="sim-card__frame"></iframe>
+            <iframe data-sim="../../assets/sim/ca3d/index.html" title="Live 3D cellular automaton simulation of a heart" name="ca3d" class="sim-card__frame"></iframe>
           </article>
         </div>
       </section>
@@ -207,10 +207,10 @@ npm install @serialport/parser-readline</pre></div>
     </main>
   </div>
 
-  <script src="../assets/js/data/site-config.js"></script>
-  <script src="../assets/js/core/layout.js"></script>
-  <script src="../assets/js/core/neuron-bg.js"></script>
-  <script src="../assets/js/core/figures.js"></script>
-  <script src="../assets/js/pages/sim-embed.js"></script>
+  <script src="../../assets/js/data/site-config.js"></script>
+  <script src="../../assets/js/core/layout.js"></script>
+  <script src="../../assets/js/core/neuron-bg.js"></script>
+  <script src="../../assets/js/core/figures.js"></script>
+  <script src="../../assets/js/pages/sim-embed.js"></script>
 </body>
 </html>

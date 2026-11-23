@@ -58,4 +58,15 @@
       if (url.indexOf("http") === 0) { a.target = "_blank"; a.rel = "noopener"; }
     }
   });
+
+  // ----- Opening the site straight from a folder (file://) -----
+  // Browsers only open a folder's index.html automatically on a web server.
+  // Online, links like "projects/" are enough. From a file, add index.html.
+  if (location.protocol === "file:") {
+    document.querySelectorAll("a[href]").forEach(function (a) {
+      var h = a.getAttribute("href");
+      if (/^(https?:|mailto:|#)/.test(h)) return;
+      if (h.slice(-1) === "/") a.setAttribute("href", h + "index.html");
+    });
+  }
 })();
