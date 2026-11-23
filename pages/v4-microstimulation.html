@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toward a V4 visual prosthesis | Younes Valibeigi</title>
+  <meta name="description" content="Electrical stimulation of shape-selective domains in macaque area V4, and closed-loop experiments in which recorded neurons guide a generative image model.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body data-root="../" data-page="v4" data-accent="v4">
+  <canvas id="neuron-bg" aria-hidden="true"></canvas>
+
+  <div class="page">
+    <main>
+      <div class="hero-banner hero-banner--fade">
+        <img src="../assets/img/invivo/v4-banner.png" alt="Macaque with an electrode over visual cortex, a brain with a probe, five colored spike traces and a three-dimensional PCA plot of clustered neurons" loading="eager">
+      </div>
+      <!-- ============ HERO ============ -->
+      <section class="page-hero">
+        <div class="wrap">
+          <div class="page-hero__rule"></div>
+          <h1>Toward a V4 visual prosthesis</h1>
+          <p class="page-hero__sub">Neurons that prefer similar shapes sit together in small clusters. Does perception depend on the whole cluster, or can one spot in it be enough?</p>
+          <ul class="tags" style="margin-top:1.4rem">
+            <li><span class="tag">Manuscript in preparation</span></li>
+            <li><span class="tag tag--muted">Valibeigi and Pack</span></li>
+            <li><span class="tag tag--muted">Society for Neuroscience 2025, nanosymposium</span></li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--solid" href="#project">The project</a>
+            <a class="btn" href="#closed-loop">Closed-loop image evolution</a>
+            <a class="btn" data-link="behaviorRepo" href="#">Task code on GitHub</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PHOTOS ============ -->
+      <section class="block" id="photos">
+        <div class="wrap">
+          <div class="photo-grid">
+            <figure class="photo photo--light">
+              <img src="../assets/img/invivo/task_dms.png" alt="Delayed match-to-sample task: fixation 500 ms, sample 300 ms with the electrode array, delay 250 to 500 ms, then a saccade to a choice stimulus" data-asset="assets/img/invivo/task_dms.png" data-label="Image: the task">
+              <figcaption>The delayed match-to-sample task. The electrode array records and stimulates during the sample.</figcaption>
+            </figure>
+            <figure class="photo">
+              <img src="../assets/img/invivo/monopolar_vs_bipolar.png" alt="Single-site monopolar and bipolar microstimulation along a linear array in cortex" data-asset="assets/img/invivo/monopolar_vs_bipolar.png" data-label="Image: monopolar vs bipolar">
+              <figcaption>Monopolar stimulation uses one contact. Bipolar stimulation uses two contacts along the array.</figcaption>
+            </figure>
+            <figure class="photo photo--light">
+              <img src="../assets/img/invivo/domain_selectivity.png" alt="Responses to circular and radial gratings, and the selectivity of each contact along the array, showing a radial and a circular domain" data-asset="assets/img/invivo/domain_selectivity.png" data-label="Image: domains along the array">
+              <figcaption>Responses to circular and radial gratings, and how each contact's preference reveals circular and radial domains.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PROJECT ============ -->
+      <section class="block" id="project">
+        <div class="wrap split">
+          <div>
+            <h2>The question</h2>
+            <div class="prose">
+              <p>In visual area V4, neurons with similar shape preferences are grouped into domains less than a millimeter across. Some researchers treat these domains as basic units of shape coding. Others think the clustering may have no function. Electrical stimulation can settle part of the argument, because it activates a cluster of neurons while we measure what the animal reports seeing.</p>
+              <p>If perception reads out the pooled activity of a whole domain, then stimulating more of the domain should push perception harder than stimulating one spot in it. That is the prediction we test.</p>
+              <p>It also bears on visual prostheses. Stimulating V1 produces points of light, so shapes must be assembled from many of them. V4 neurons already encode fragments of shape, so a prosthesis that stimulates V4 in a pattern that matches its domains might evoke those fragments directly.</p>
+            </div>
+          </div>
+          <div class="prose">
+            <h2>The experiment</h2>
+            <p>A macaque judges whether a noisy grating is circular or radial in a delayed match-to-sample task. We record from V4 with 32-contact linear arrays and use the responses along the array to find stretches of contacts that prefer one pattern or the other. During the sample, on randomly chosen trials, we deliver brief electrical stimulation through a single contact, or between two contacts that bracket the domain. We then measure how stimulation shifts the animal's choices.</p>
+            <p>Results are being prepared for publication.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="task">
+        <div class="wrap">
+          <div class="block__head">
+            <h2>One trial</h2>
+            <p>The sample appears over the receptive fields of the recorded neurons. The positions of the two choice gratings are randomized, so a bias toward one side of the screen cannot masquerade as a bias toward one pattern.</p>
+          </div>
+
+          <div class="split split--even">
+            <div class="panel">
+              <svg viewBox="0 0 560 220" role="img" aria-label="Trial timeline: fixation 500 ms, sample 300 ms with optional microstimulation, delay 250 to 500 ms, then choice by saccade" style="width:100%;height:auto;display:block">
+                <g font-family="Bricolage Grotesque, system-ui, sans-serif" text-anchor="middle">
+                  <rect x="8"   y="60" width="112" height="70" rx="8" fill="none" stroke="#a2abbd" stroke-width="1.5"/>
+                  <text x="64"  y="92"  fill="#eceff6" font-size="15" font-weight="600">Fixation</text>
+                  <text x="64"  y="112" fill="#a2abbd" font-size="13">500 ms</text>
+
+                  <rect x="146" y="60" width="132" height="70" rx="8" fill="none" stroke="#1de9f0" stroke-width="3"/>
+                  <text x="212" y="92"  fill="#1de9f0" font-size="15" font-weight="600">Sample</text>
+                  <text x="212" y="112" fill="#a2abbd" font-size="13">300 ms</text>
+
+                  <rect x="304" y="60" width="112" height="70" rx="8" fill="none" stroke="#a2abbd" stroke-width="1.5"/>
+                  <text x="360" y="92"  fill="#eceff6" font-size="15" font-weight="600">Delay</text>
+                  <text x="360" y="112" fill="#a2abbd" font-size="13">250 to 500 ms</text>
+
+                  <rect x="442" y="60" width="110" height="70" rx="8" fill="none" stroke="#a2abbd" stroke-width="1.5"/>
+                  <text x="497" y="92"  fill="#eceff6" font-size="15" font-weight="600">Choice</text>
+                  <text x="497" y="112" fill="#a2abbd" font-size="13">saccade</text>
+                </g>
+                <g stroke="#a2abbd" stroke-width="1.5" fill="none">
+                  <path d="M122 95 H144"/><path d="M280 95 H302"/><path d="M418 95 H440"/>
+                </g>
+                <!-- stimulation bar over the sample -->
+                <rect x="146" y="26" width="132" height="10" rx="5" fill="#ffd21a" opacity=".95"/>
+                <text x="212" y="18" fill="#ffd21a" font-size="13" text-anchor="middle" font-family="Bricolage Grotesque, system-ui, sans-serif">microstimulation on some trials</text>
+                <line x1="212" y1="38" x2="212" y2="58" stroke="#ffd21a" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <!-- choice gratings -->
+                <g font-family="Bricolage Grotesque, system-ui, sans-serif" font-size="13" fill="#a2abbd" text-anchor="middle">
+                  <circle cx="470" cy="172" r="18" fill="none" stroke="#fc8d59" stroke-width="2"/>
+                  <circle cx="470" cy="172" r="10" fill="none" stroke="#fc8d59" stroke-width="2"/>
+                  <text x="470" y="210">circular</text>
+                  <g stroke="#91bfdb" stroke-width="2">
+                    <line x1="526" y1="172" x2="544" y2="172"/><line x1="535" y1="163" x2="535" y2="181"/>
+                    <line x1="528.5" y1="165.5" x2="541.5" y2="178.5"/><line x1="541.5" y1="165.5" x2="528.5" y2="178.5"/>
+                  </g>
+                  <text x="535" y="210">radial</text>
+                </g>
+              </svg>
+            </div>
+
+            <div class="panel">
+              <svg viewBox="0 0 560 232" role="img" aria-label="Linear array with a stretch of contacts forming a domain; monopolar stimulation uses one contact, bipolar stimulation uses two contacts of opposite polarity on either side" style="width:100%;height:auto;display:block">
+                <g font-family="Bricolage Grotesque, system-ui, sans-serif" font-size="13" fill="#a2abbd" text-anchor="middle">
+                  <!-- monopolar -->
+                  <text x="140" y="20" fill="#eceff6" font-size="15" font-weight="600">Monopolar</text>
+                  <rect x="110" y="36" width="60" height="112" rx="6" fill="#b44dff" opacity=".16"/>
+                  <line x1="140" y1="30" x2="140" y2="198" stroke="#a2abbd" stroke-width="1.5"/>
+                  <g fill="#000" stroke="#a2abbd" stroke-width="1.5">
+                    <circle cx="140" cy="48"  r="6"/><circle cx="140" cy="68"  r="6"/><circle cx="140" cy="88"  r="6"/>
+                    <circle cx="140" cy="108" r="6"/><circle cx="140" cy="128" r="6"/><circle cx="140" cy="148" r="6"/>
+                    <circle cx="140" cy="168" r="6"/><circle cx="140" cy="188" r="6"/>
+                  </g>
+                  <circle cx="140" cy="88" r="7" fill="#ffd21a" stroke="#ffd21a"/>
+                  <circle cx="140" cy="88" r="20" fill="none" stroke="#ffd21a" stroke-opacity=".5" stroke-dasharray="3 3"/>
+                  <text x="140" y="222" font-size="13">one contact, distant return</text>
+
+                  <!-- bipolar -->
+                  <text x="420" y="20" fill="#eceff6" font-size="15" font-weight="600">Bipolar</text>
+                  <rect x="390" y="36" width="60" height="112" rx="6" fill="#b44dff" opacity=".16"/>
+                  <line x1="420" y1="30" x2="420" y2="198" stroke="#a2abbd" stroke-width="1.5"/>
+                  <g fill="#000" stroke="#a2abbd" stroke-width="1.5">
+                    <circle cx="420" cy="48"  r="6"/><circle cx="420" cy="68"  r="6"/><circle cx="420" cy="88"  r="6"/>
+                    <circle cx="420" cy="108" r="6"/><circle cx="420" cy="128" r="6"/><circle cx="420" cy="148" r="6"/>
+                    <circle cx="420" cy="168" r="6"/><circle cx="420" cy="188" r="6"/>
+                  </g>
+                  <circle cx="420" cy="68"  r="7" fill="#ffd21a" stroke="#ffd21a"/>
+                  <circle cx="420" cy="128" r="7" fill="#1de9f0" stroke="#1de9f0"/>
+                  <path d="M436 76 C452 90 452 108 436 120" fill="none" stroke="#fff" stroke-width="1.5" marker-end="url(#a2)"/>
+                  <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#fff"/></marker></defs>
+                  <text x="420" y="222" font-size="13">two contacts, opposite polarity</text>
+
+                  <text x="280" y="112" font-size="13">shaded: a domain</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CLOSED LOOP ============ -->
+      <section class="block" id="closed-loop">
+        <div class="wrap split">
+          <div>
+            <h2>Closed loop with cortex in the loop</h2>
+            <div class="prose">
+              <p>The grating task measures a stimulation effect along one axis, circular against radial. The percept evoked by stimulating a V4 domain is probably not a grating, so that axis only captures a projection of it.</p>
+              <p>To build axes that match each recording site's own preferences, I run a closed-loop experiment in collaboration with the Ponce lab at Harvard. The firing rate of a recorded V4 site is the score for a genetic algorithm. The algorithm recombines and mutates the latent codes of a deep generative network, the network renders new images, and the animal views them. Over many generations the images converge on what the site likes most, and the opposite run finds what it likes least. Interpolating between the two gives a continuum of images, which I'm testing as a discrimination axis for future stimulation experiments.</p>
+              <div class="callout"><strong>Built on the work of Carlos Ponce.</strong> This closed-loop approach builds on his 2019 <em>Cell</em> paper, <a href="https://pubmed.ncbi.nlm.nih.gov/31051108/" target="_blank" rel="noopener">&ldquo;Evolving images for visual neurons using a deep generative network reveals coding principles and neuronal preferences&rdquo;</a> (Ponce, Xiao, Schade, Hartmann, Kreiman and Livingstone), which introduced evolving images for neurons with a deep generative network.</div>
+              <p>The pipeline joins Intan RHX multi-channel recording, MonkeyLogic behavioral control and socket-based communication into one adaptive loop. It is the neural counterpart of the <a href="cardiac-closed-loop.html">cardiac closed loop</a>: a reader, a model that decides, a writer, and a tight clock.</p>
+              <p class="small">This part of the project is preliminary and is still in progress.</p>
+            </div>
+          </div>
+          <figure class="fig">
+            <div class="fig__frame">
+              <img src="../assets/img/invivo/closed_loop_generative.png" alt="Closed loop: a macaque views images, neural responses feed a genetic algorithm that recombines and mutates codes, and a deep generative network renders the next images" data-asset="assets/img/invivo/closed_loop_generative.png" data-label="Closed feedback loop figure">
+            </div>
+            <figcaption><strong>Closed feedback loop.</strong> Neural responses to a set of images score each image. A genetic algorithm recombines and mutates the codes of the best ones, and a deep generative network renders the next generation.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="block" id="code">
+        <div class="wrap">
+          <h2>Code</h2>
+          <p class="prose">The behavioral task and experiment code are on GitHub.</p>
+          <div class="btn-row">
+            <a class="btn btn--solid" data-link="behaviorRepo" href="#">Behavior_MonkeyLogic on GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/data/site-config.js"></script>
+  <script src="../assets/js/core/layout.js"></script>
+  <script src="../assets/js/core/neuron-bg.js"></script>
+  <script src="../assets/js/core/figures.js"></script>
+</body>
+</html>

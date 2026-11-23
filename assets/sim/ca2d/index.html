@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- 2D cellular-automaton heart tissue, embedded in pages/cardiac-closed-loop.html.
+     Code: app/main.js (model + controls), app/shaders/ (GPU code), ../shared/ (library). -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2D cellular automaton</title>
+  <link rel="stylesheet" href="../shared/sim-page.css">
+  <!-- shaders and images, packed into scripts so no web server is needed (see tools/build_sim_assets.py) -->
+  <script src="../shared/assets-common.js"></script>
+  <script src="app/assets.js"></script>
+  <script>
+    var require = {
+      baseUrl: "./",
+      paths: {
+        Abubu: "../shared/Abubu", shader: "../shared/shader-inline",
+        image: "../shared/image-inline", SimPage: "../shared/sim-page"
+      }
+    };
+  </script>
+  <script>
+    // Load the simulation only if the browser supports WebGL 2.
+    (function () {
+      var ok = false;
+      try { ok = !!document.createElement("canvas").getContext("webgl2"); } catch (e) {}
+      if (!ok) {
+        document.addEventListener("DOMContentLoaded", function () {
+          document.querySelector(".sim").innerHTML = '<p class="sim__nogl">This simulation needs WebGL 2, which this browser or device does not offer.</p>';
+          if (window.parent !== window) window.parent.postMessage({ type: "sim-height", name: window.name, height: 90 }, "*");
+        });
+        return;
+      }
+      var s = document.createElement("script");
+      s.src = "../shared/require.js"; s.setAttribute("data-main", "app/main");
+      document.head.appendChild(s);
+    })();
+  </script>
+</head>
+<body>
+  <div class="sim">
+    <div class="sim__view"><canvas id="canvas_1" width="512" height="512" aria-label="2D cardiac tissue simulation. Drag to stimulate, shift and drag to place a block."></canvas></div>
+    <div class="sim__panel" id="panel"></div>
+  </div>
+</body>
+</html>

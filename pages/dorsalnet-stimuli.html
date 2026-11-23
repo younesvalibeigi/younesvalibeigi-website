@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hierarchical control of VPL | Younes Valibeigi</title>
+  <meta name="description" content="Motion stimuli synthesized with DorsalNet to target one stage of the primate dorsal visual pathway, used to study visual perceptual learning.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/stimuli.css">
+</head>
+<body data-root="../" data-page="dorsalnet" data-accent="dorsalnet">
+  <canvas id="neuron-bg" aria-hidden="true"></canvas>
+
+  <div class="page">
+    <main>
+      <!-- ============ HERO ============ -->
+      <section class="page-hero">
+        <div class="wrap">
+          <div class="page-hero__rule"></div>
+          <p><a href="projects.html">&larr; All projects</a></p>
+          <h1>Hierarchical control of visual perceptual learning with model-synthesized stimuli</h1>
+          <p class="page-hero__sub">A model of the primate dorsal visual stream generates pairs of motion videos that differ at one chosen stage of the hierarchy. We use them to ask where perceptual learning happens.</p>
+          <ul class="tags" style="margin-top:1.4rem">
+            <li><span class="tag">Manuscript in preparation</span></li>
+            <li><span class="tag tag--muted">Valibeigi, Pandey, Pack, Bakhtiari</span></li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--solid" href="#res0">Early layer stimuli (res0)</a>
+            <a class="btn" href="#res2">Late layer stimuli (res2)</a>
+            <a class="btn" data-link="dorsalnetRepo" href="#">Code on GitHub</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SUMMARY ============ -->
+      <section class="block" id="summary">
+        <div class="wrap split">
+          <div>
+            <h2>The question</h2>
+            <div class="prose">
+              <p>People get better at visual tasks with practice, and the improvement often stays tied to the stimulus or the spot in the visual field that was trained. One leading explanation is that practice changes how the brain reads out sensory signals, while the signals themselves stay put. What has been hard to test is <em>which stage</em> of the visual hierarchy gets read out, because ordinary stimuli drive many stages at once.</p>
+              <p>We used DorsalNet, a deep network trained to estimate self-motion from video, whose layers line up with V1, MT and MST along the primate dorsal pathway. For an early layer (res0) and a late layer (res2) we synthesized a pair of motion videos that the layer tells apart as strongly as possible. Human observers train on one kind of pair and are then tested at a new retinal location and on the other kind. Readout models built on DorsalNet run the same experiment in silico.</p>
+              
+            </div>
+          </div>
+          <div class="diagram">
+            <svg viewBox="0 0 640 250" role="img" aria-label="DorsalNet stages s1, res0, res1, res2 and res3 in sequence, with res0 marked as early and V1-like and res2 marked as late and MST-like">
+              <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M0 0 L10 5 L0 10 z" fill="#a2abbd"/>
+                </marker>
+                <filter id="glow0" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <text x="10" y="22" fill="#a2abbd" font-size="13">DorsalNet (weights frozen)</text>
+
+              <g font-size="15" font-weight="600" text-anchor="middle">
+                <rect x="10"  y="40" width="96" height="58" rx="8" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.5"/>
+                <text x="58"  y="75" fill="#eceff6">s1</text>
+
+                <rect x="146" y="40" width="96" height="58" rx="8" fill="none" stroke="#a888c0" stroke-width="3" filter="url(#glow0)"/>
+                <text x="194" y="75" fill="#a888c0">res0</text>
+
+                <rect x="282" y="40" width="96" height="58" rx="8" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.5"/>
+                <text x="330" y="75" fill="#eceff6">res1</text>
+
+                <rect x="418" y="40" width="96" height="58" rx="8" fill="none" stroke="#78b878" stroke-width="3" filter="url(#glow0)"/>
+                <text x="466" y="75" fill="#78b878">res2</text>
+
+                <rect x="554" y="40" width="76" height="58" rx="8" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="1.5"/>
+                <text x="592" y="75" fill="#eceff6">res3</text>
+              </g>
+              <g stroke="#a2abbd" stroke-width="1.5" marker-end="url(#arr)">
+                <line x1="108" y1="69" x2="142" y2="69"/>
+                <line x1="244" y1="69" x2="278" y2="69"/>
+                <line x1="380" y1="69" x2="414" y2="69"/>
+                <line x1="516" y1="69" x2="550" y2="69"/>
+              </g>
+
+              <g font-size="13" text-anchor="middle">
+                <text x="194" y="122" fill="#a888c0">early layer</text>
+                <text x="194" y="140" fill="#a2abbd">V1-like</text>
+                <text x="466" y="122" fill="#78b878">late layer</text>
+                <text x="466" y="140" fill="#a2abbd">MST-like</text>
+              </g>
+
+              <text x="10" y="190" fill="#a2abbd" font-size="13">Primate dorsal pathway</text>
+              <g font-size="14" font-weight="600" fill="#eceff6">
+                <text x="10"  y="222">V1</text>
+                <text x="300" y="222">MT</text>
+                <text x="590" y="222">MST</text>
+              </g>
+              <line x1="42" y1="217" x2="290" y2="217" stroke="#a2abbd" stroke-width="1.5" marker-end="url(#arr)"/>
+              <line x1="332" y1="217" x2="580" y2="217" stroke="#a2abbd" stroke-width="1.5" marker-end="url(#arr)"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ HOW THE STIMULI ARE MADE ============ -->
+      <section class="block" id="method">
+        <div class="wrap">
+          <div class="block__head">
+            <h2>How a stimulus pair is made</h2>
+            <p>The same recipe runs once for res0 and once for res2.</p>
+          </div>
+          <ol class="steps prose">
+            <li><strong>Start from noise</strong>One random 11-frame video is copied into two. One copy is labeled category 1 and the other category 2.</li>
+            <li><strong>Optimize against the layer</strong>For 2,000 Adam iterations, the two videos are pushed apart along a fixed linear direction in the target layer's activation space (the second principal component of its activations). The network never changes. Random jitter and rescaling keep the patterns robust.</li>
+            <li><strong>Make them displayable</strong>The videos are smoothed, masked to a soft-edged circle, trimmed to 9 frames, matched in contrast and luminance, and converted to grayscale so that observers can only use motion.</li>
+            <li><strong>Make the dissimilarity levels</strong>A second noise pair is optimized toward the activations of the finished pair and saved every 50 iterations. The result is a series that runs from near-identical and noisy to the optimum pair.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ HOW TO READ THE GALLERY ============ -->
+      <section class="block" id="guide">
+        <div class="wrap">
+          <div class="block__head">
+            <h2>Reading the galleries</h2>
+            <p>Each card is one pair. The optimum pair comes first, then level 25 (closest to the optimum) down to level 1 (noisiest). Hover over any video to enlarge it.</p>
+          </div>
+          <div class="guide">
+            <div class="legend">
+              <span class="legend__item"><span class="legend__swatch" data-class-color="0"></span>Category 1</span>
+              <span class="legend__item"><span class="legend__swatch" data-class-color="1"></span>Category 2</span>
+              <span class="legend__item"><span class="fade-bar" data-fade-bar="0"></span>Border fades to 20% as noise rises</span>
+            </div>
+            <label class="size-control">Stimulus size
+              <input id="stim-size" type="range" min="40" max="140" step="4" value="64">
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RES0 ============ -->
+      <section class="block layer layer--res0" id="res0">
+        <div class="wrap">
+          <span class="layer__tag">Early layer, V1-like</span>
+          <h2>Res0 stimuli</h2>
+          <div class="split">
+            <div class="prose">
+            <p>These pairs differ most in DorsalNet's first residual stage, which responds to small patches of the image. They differ mainly in local motion structure.</p>
+              <p>The plot shows how the optimization pulls the two categories apart in this layer. Noisy pairs sit close together near the classifier line, and the fully optimized pair sits far out on either side.</p>
+          </div>
+          <figure class="fig">
+            <div class="fig__frame">
+              <img src="../assets/img/dorsalnet/pca_res0.png" alt="Res0 activation space: PCA of res0 activations for both categories along the optimization sequence, with the linear classifier" data-asset="assets/img/dorsalnet/pca_res0.png" data-label="Res0 PCA activation space">
+            </div>
+            <figcaption><strong>Res0 activation space.</strong> PCA of the layer's activations. Points are the two categories at successive optimization levels (lighter is noisier), arrows mark the fully synthesized pair, and the line is the fixed linear classifier.</figcaption>
+          </figure>
+          </div>
+
+          <div data-gallery="res0"></div>
+
+          <h3>Loss</h3>
+          <div data-loss="res0"></div>
+        </div>
+      </section>
+
+      <!-- ============ RES2 ============ -->
+      <section class="block layer layer--res2" id="res2">
+        <div class="wrap">
+          <span class="layer__tag">Late layer, MST-like</span>
+          <h2>Res2 stimuli</h2>
+          <div class="split">
+            <div class="prose">
+            <p>These pairs differ most in the third residual stage, where units pool motion over larger regions of the visual field.</p>
+              <p>In this layer the noisy pairs also sit near the classifier line, and the fully optimized pair sits far out on either side.</p>
+          </div>
+          <figure class="fig">
+            <div class="fig__frame">
+              <img src="../assets/img/dorsalnet/pca_res2.png" alt="Res2 activation space: PCA of res2 activations for both categories along the optimization sequence, with the linear classifier" data-asset="assets/img/dorsalnet/pca_res2.png" data-label="Res2 PCA activation space">
+            </div>
+            <figcaption><strong>Res2 activation space.</strong> Same plot for the late layer. The two categories separate along the first principal component, and the synthesized pair sits furthest out.</figcaption>
+          </figure>
+          </div>
+
+          <div data-gallery="res2"></div>
+
+          <h3>Loss</h3>
+          <div data-loss="res2"></div>
+        </div>
+      </section>
+
+      <!-- ============ CODE ============ -->
+      <section class="block" id="code">
+        <div class="wrap">
+          <h2>Regenerate the stimuli</h2>
+          <p class="prose">The code for stimulus synthesis and for the readout models is on GitHub.</p>
+          <div class="btn-row">
+            <a class="btn btn--solid" data-link="dorsalnetRepo" href="#">VPL_DorsalNet on GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/data/site-config.js"></script>
+  <script src="../assets/js/data/stimuli-config.js"></script>
+  <script src="../assets/js/core/layout.js"></script>
+  <script src="../assets/js/core/neuron-bg.js"></script>
+  <script src="../assets/js/pages/stimuli-gallery.js"></script>
+  <script src="../assets/js/pages/loss-chart.js"></script>
+  <script src="../assets/js/core/figures.js"></script>
+</body>
+</html>

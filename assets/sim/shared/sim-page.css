@@ -1,0 +1,15 @@
+/* Styles for the two simulation pages (they are shown inside iframes on the cardiac page). */
+:root { color-scheme: dark; }
+html, body { margin: 0; background: transparent; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #dde2ee; }
+
+.sim { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; justify-content: center; padding: 6px; box-sizing: border-box; }
+.sim__view { flex: 1 1 340px; max-width: 512px; min-width: 0; }
+.sim__view canvas {
+  display: block; width: 100%; height: auto; border-radius: 8px; background: #fff;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 0 34px -8px #1de9f0;
+  touch-action: none; cursor: crosshair;
+}
+.sim__panel { flex: 0 0 260px; max-width: 100%; }
+.sim__panel .dg.main { width: 100% !important; border-radius: 8px; overflow: hidden; }
+
+.sim__nogl { color: #a2abbd; padding: 1rem 0; margin: 0; }

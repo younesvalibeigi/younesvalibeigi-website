@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Younes Valibeigi | Systems neuroscience and neuroengineering</title>
+  <meta name="description" content="Younes Valibeigi, PhD candidate at McGill University. Real-time closed-loop systems that couple living tissue with computation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body data-root="" data-page="home" data-accent="home">
+  <canvas id="neuron-bg" aria-hidden="true"></canvas>
+
+  <div class="page">
+    <!-- nav is inserted here by assets/js/core/layout.js -->
+
+    <main>
+      <!-- ============ HERO ============ -->
+      <div class="hero-banner">
+        <img src="assets/img/banner/hero-banner.png" alt="Macaque with an electrode over visual cortex, a glowing brain, five colored spike traces and a three-dimensional PCA plot of clustered neurons" data-asset="assets/img/banner/hero-banner.png" data-label="Banner image">
+      </div>
+
+      <section class="hero">
+        <div class="wrap">
+          <h1>Younes Valibeigi</h1>
+          <img class="hero__photo" src="assets/img/photos/profile.jpg" alt="Younes Valibeigi" data-asset="assets/img/photos/profile.jpg" data-label="Profile photo">
+          <div class="traces" aria-hidden="true">
+          <div class="traces" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="hero__role">Systems neuroscientist and neuroengineer</p>
+          <p class="hero__lede">I'm a PhD candidate at the Montreal Neurological Institute, working at the intersection of neuroscience, artificial intelligence, and neuroengineering. I combine electrophysiology, cortical stimulation, and computational models to understand visual perception and develop neural prosthetics. My broader research interest is in building closed-loop systems that connect biological neural networks with artificial computation in real time.</p>
+          <div class="btn-row">
+            <a class="btn btn--solid" data-link="linkedin" href="#">LinkedIn</a>
+            <a class="btn" data-link="github" href="#">GitHub</a>
+            <a class="btn" data-link="email" href="#">Email</a>
+          </div>
+          <p class="hero__affil">PhD candidate, Integrative Program in Neuroscience, McGill University. Pack Lab, Montreal Neurological Institute (The Neuro).</p>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section class="block" id="about">
+        <div class="wrap split">
+          <div class="block__head">
+            <h2>About</h2>
+            <p>Where I work, and what I do there.</p>
+          </div>
+          <div class="prose">
+            <p>I'm a PhD candidate in Neuroscience at McGill University, working in Dr. Christopher Pack's lab at the Montreal Neurological Institute (The Neuro). My research sits at the intersection of systems neuroscience, computational neuroscience, and neuroengineering, with a focus on understanding how neural activity gives rise to visual perception and how we can interact with the brain through electrical stimulation and closed-loop systems.</p>
+            <p>My experimental work involves studying visual processing in awake macaques through behavioral experiments, electrophysiological recordings, and cortical microstimulation. I investigate how activity in visual areas such as V1, V4, and MT contributes to perception, with the broader goal of developing cortical visual prostheses. Alongside this, I build closed-loop experimental systems that integrate real-time neural recordings, computational algorithms, and electrical stimulation to study and influence neural activity.</p>
+            <p>On the computational side, I use deep neural networks, generative models, and neural data analysis to investigate visual representations and perceptual learning. My collaborations with researchers at Harvard University and Université de Montréal explore how artificial neural networks can help us understand biological vision and generate stimuli that probe neural processing.</p>
+            <p>Before my doctoral research, I worked on cardiac electrophysiology, developing a real-time interface between living cardiac tissue and GPU-based computational simulations. This experience shaped my broader interest in building systems where biological networks and artificial computation can interact dynamically.</p>
+            <p>Beyond research, I enjoy working across disciplines, bringing together experimental neuroscience, engineering, and computational approaches. I also contribute to neuroscience education through teaching at McGill and mentoring students at Neuromatch Academy.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PROJECTS ============ -->
+      <section class="block" id="projects">
+        <div class="wrap">
+          <div class="block__head">
+            <h2>Research</h2>
+            <p>Three projects, one pattern: tissue and computer exchange signals fast enough to change each other.</p>
+          </div>
+          <div class="projects">
+            <a class="project project--cardiac" href="pages/cardiac-closed-loop.html">
+              <h3>A closed loop between heart cells and a simulation</h3>
+              <p>Cultured cardiac monolayers and a GPU model of cardiac tissue respond to each other in real time, with light as the link. The same architecture could train neural tissue.</p>
+              <p class="project__status">Published in PLOS Computational Biology, 2026</p>
+            </a>
+            <a class="project project--dorsal" href="pages/dorsalnet-stimuli.html">
+              <h3>Hierarchical control of visual perceptual learning with model-synthesized stimuli</h3>
+              <p>A model of the primate dorsal stream generates motion videos that differ at one chosen stage of the hierarchy. The page shows every stimulus.</p>
+              <p class="project__status">Manuscript in preparation</p>
+            </a>
+            <a class="project project--v4" href="pages/v4-microstimulation.html">
+              <h3>Toward a V4 visual prosthesis</h3>
+              <p>Electrical stimulation of shape-selective domains in macaque V4, and neurons that choose the images they see.</p>
+              <p class="project__status">Manuscript in preparation</p>
+            </a>
+          </div>
+
+          <div class="btn-row">
+            <a class="btn" href="pages/projects.html">All projects</a>
+          </div>
+          
+        </div>
+      </section>
+
+      
+      <!-- ============ SHORT CV ============ -->
+      <section class="block" id="cv">
+        <div class="wrap">
+          <div class="block__head">
+            <h2>Short CV</h2>
+          </div>
+
+          <div class="split">
+            <div>
+              <h3>Education</h3>
+              <ul class="timeline">
+                <li>
+                  <span class="timeline__when">2021 to 2027 (expected)</span>
+                  <span class="timeline__what">PhD, Integrative Program in Neuroscience</span>
+                  McGill University
+                </li>
+                <li>
+                  <span class="timeline__when">2020 to 2021</span>
+                  <span class="timeline__what">Graduate Studies, Physiology (fast-track)</span>
+                  McGill University
+                </li>
+                <li>
+                  <span class="timeline__when">2017 to 2020</span>
+                  <span class="timeline__what">BSc, Neuroscience</span>
+                  McGill University, Dean's Honour List
+                </li>
+                <li>
+                  <span class="timeline__when">2015 to 2017</span>
+                  <span class="timeline__what">DEC, Health Science</span>
+                  Marianopolis College
+                </li>
+              </ul>
+
+              <h3>Skills</h3>
+              <dl class="facts">
+                <dt>Closed-loop systems</dt>
+                <dd>Real-time coupling of tissue and simulation, feedback control, hardware and software integration</dd>
+                <dt>Neural recording</dt>
+                <dd>In vivo recording and microstimulation in awake macaques, multi-electrode arrays, spike sorting, decoding</dd>
+                <dt>Neural populations</dt>
+                <dd>Population coding, information theory, dimensionality reduction, signal detection theory</dd>
+                <dt>Programming</dt>
+                <dd>Python, MATLAB, PyTorch, C/C++, JavaScript and WebGL, CUDA, Arduino, socket communication</dd>
+              </dl>
+            </div>
+
+            <div>
+              <h3>Research experience</h3>
+
+              <div class="entry">
+                <h4>Doctoral researcher, visual neuroscience and cortical prosthetics</h4>
+                <p class="entry__meta">Pack Lab, Montreal Neurological Institute, McGill University. 2021 to present</p>
+                <ul>
+                  <li>Investigate visual perception through electrophysiological recordings and cortical microstimulation in V1 and V4 of awake macaques.</li>
+                  <li>Design behavioral experiments integrating MonkeyLogic, eye tracking and neural recordings to study perceptual decisions and develop cortical visual prostheses.</li>
+                </ul>
+              </div>
+
+              <div class="entry">
+                <h4>Collaborating researcher, closed-loop neural-guided image optimization</h4>
+                <p class="entry__meta">Ponce Lab, Harvard University, with Pack Lab</p>
+                <ul>
+                  <li>Develop a closed-loop system that uses real-time cortical responses to guide genetic-algorithm optimization of images generated by deep neural networks.</li>
+                  <li>Integrate Intan electrophysiology, MonkeyLogic and MATLAB to iteratively optimize visual stimuli based on neuronal firing rates.</li>
+                </ul>
+              </div>
+
+              <div class="entry">
+                <h4>Collaborating researcher, computational models of perceptual learning</h4>
+                <p class="entry__meta">Bakhtiari Lab, Université de Montréal, with Pack Lab</p>
+                <ul>
+                  <li>Generate feature-visualized stimuli from deep neural networks to investigate visual representations and human perceptual learning.</li>
+                  <li>Use psychophysical experiments to study changes in visual discrimination and transfer of learning across stimuli and spatial locations.</li>
+                </ul>
+              </div>
+
+              <div class="entry">
+                <h4>Graduate researcher, closed-loop cardiac electrophysiology</h4>
+                <p class="entry__meta">Bub Lab, McGill University, and Fenton Lab, Georgia Tech. 2019 to 2021</p>
+                <ul>
+                  <li>Developed a real-time closed-loop interface between living cardiac tissue and GPU-accelerated computational simulations.</li>
+                  <li>Integrated optogenetics, optical imaging and WebGL simulations to investigate and control cardiac excitation dynamics.</li>
+                </ul>
+              </div>
+
+              <div class="entry">
+                <h4>Undergraduate researcher, hippocampal interneurons</h4>
+                <p class="entry__meta">Williams Lab, Douglas Research Centre, McGill University. 2018 to 2019</p>
+                <ul>
+                  <li>Investigated O-LM interneurons and other hippocampal neuronal populations in memory-related circuits.</li>
+                  <li>Developed machine-learning-based image segmentation to quantify c-Fos expression in hippocampal CA1 and CA3 regions.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="block" id="publications">
+        <div class="wrap split">
+          <div class="block__head">
+            <h2>Publications</h2>
+          </div>
+          <ul class="pubs">
+            <li>
+              <span class="pubs__title">Valibeigi Y, Pandey A, Pack C, Bakhtiari S (2026). Hierarchical control of visual perceptual learning with model-synthesized stimuli.</span>
+              <span class="pubs__note">Manuscript in preparation. <a href="pages/dorsalnet-stimuli.html">Stimuli</a></span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Kaboudian A, Fenton F, Bub G (2026). Real-time GPU-accelerated coupled cardiac system: integrating bidirectional interactions between living optogenetic monolayers and computational simulations.</span>
+              <span class="pubs__note"><em>PLOS Computational Biology.</em> <a href="https://doi.org/10.1371/journal.pcbi.1014590" target="_blank" rel="noopener">doi:10.1371/journal.pcbi.1014590</a>. <a href="pages/cardiac-closed-loop.html">Project page</a></span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block" id="talks">
+        <div class="wrap split">
+          <div class="block__head">
+            <h2>Talks and posters</h2>
+          </div>
+          <ul class="pubs">
+            <li>
+              <span class="pubs__title">Valibeigi Y, Pack C (2026). Microstimulation of V4 domains modulates visual perception in non-human primates.</span>
+              <span class="pubs__note">Canadian Neuroscience Meeting, Montréal. Poster</span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Pack C (2025). Microstimulation of V4 domains modulates visual perception in non-human primates.</span>
+              <span class="pubs__note">Society for Neuroscience Annual Meeting, San Diego. Nanosymposium talk. <a href="pages/v4-microstimulation.html">Project page</a></span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Bub G (2021). Development of a closed-feedback loop device between graphics-card simulation and cardiac monolayer.</span>
+              <span class="pubs__note">Canadian Mathematical Society Summer Meeting, online. Poster</span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y (2026). Closed-loop systems between living tissue and computers: from cardiac monolayers in vitro to primate visual cortex in vivo.</span>
+              <span class="pubs__note">Research presentation to the laboratory of Dr. Lena Smirnova, Center for Alternatives to Animal Testing, Johns Hopkins Bloomberg School of Public Health, Baltimore. Oral presentation</span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Pack C (2026). Neural-guided image synthesis: letting V4 neurons reveal the visual features that drive them.</span>
+              <span class="pubs__note">Integrated Program in Neuroscience Annual Retreat, McGill University. Oral presentation</span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Pack C (2026). Microstimulation of V4 domains modulates visual perception in non-human primates.</span>
+              <span class="pubs__note">New York University Abu Dhabi, February 2026. Research presentation</span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Pandey A, Pack C, Bakhtiari S (2026). AI-synthesized motion stimuli reveal hierarchical mechanisms of specificity in visual perceptual learning.</span>
+              <span class="pubs__note">UNIQUE Student Symposium, Montréal. Poster</span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Pack C (2025). Microstimulation of V4 domains modulates visual perception in non-human primates.</span>
+              <span class="pubs__note">Integrated Program in Neuroscience Annual Retreat, McGill University. Poster</span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Pack C (2025). Developing artificial vision through V4-targeted cortical prosthesis.</span>
+              <span class="pubs__note">Biological and Biomedical Engineering Symposium, McGill University. Poster</span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Pack C (2022). Extrastriate visual cortical prosthesis.</span>
+              <span class="pubs__note">ERA-NET I-SEE Consortium Meeting, EPFL, Lausanne. Oral presentation</span>
+            </li>
+            <li>
+              <span class="pubs__title">Valibeigi Y, Bub G (2021). Real-time interaction with the cardiac monolayer using optogenetic tools, GPU simulations, and Internet of Things.</span>
+              <span class="pubs__note">26th Annual Physiology Graduate Research Day, McGill University. Poster, second-place award</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block" id="service">
+        <div class="wrap split split--even">
+          <div>
+            <h3>Teaching and mentoring</h3>
+            <ul>
+              <li><strong>Neuromatch Academy</strong>, 2023 to 2026. Regular TA (2023), project TA (2024 and 2025) and lead project TA (2026).
+                <ul class="sublist">
+                  <li>Supported student pods across North America, South America, Europe, the Middle East and Asia, adapting how I taught to each student's technical background, language, culture and learning style.</li>
+                  <li>As lead project TA, I helped project TAs resolve pod problems such as group dynamics, participation, technical difficulties and academic integrity, either directly or by escalating them.</li>
+                </ul>
+              </li>
+              <li><strong>NEUR 503, Computational Neuroscience</strong>, McGill, teaching assistant, 2025 to present.
+                <ul class="sublist">
+                  <li>The course materials were long based on MATLAB, so I developed Python versions of the exercises and analysis workflows to match current computational neuroscience practice.</li>
+                  <li>I write supplementary tutorials based on the difficulties students keep running into, and I am contributing to a curriculum redesign that emphasizes projects, scientific reasoning and critical thinking, so the course stays effective now that students have access to LLMs.</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h3>Community</h3>
+            <ul>
+              <li><strong>Unifying Neuroscience and AI Quebec</strong>, logistics coordinator, student affairs committee, 2024 to 2025.</li>
+              <li><strong>Montreal AI and Neuroscience Conference (MAIN)</strong>, organizer, 2022.</li>
+              <li><strong>BrainInfo</strong>, McGill, science communicator, 2021 to 2023. <a href="https://x.com/InfoCerveau/status/1578514295146840064" target="_blank" rel="noopener">Volunteer of the Year, 2022</a>.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Funding and honours</h3>
+            <p>Doctoral training scholarships from FRQS and FRQNT; CIHR Canada Graduate Research Scholarship (Master's); NSERC Undergraduate Student Research Awards (twice); UNIQUE Excellence Scholarship and UNIQUE Travel Award; IPN Recruitment and Internal Awards; Graduate Mobility Award; J. W. McConnell Scholarship; Faculty of Science Scholarship.</p>
+            <p>Second place poster award, Physiology Research Day 2021. <a href="https://x.com/Evident_LS/status/1157357919609991168" target="_blank" rel="noopener">Olympus Image Contest recognition, 2019</a>. Golden Key International Honour Society, lifetime member.</p>
+
+            <h3>Outside the lab</h3>
+            <p>Kyokushin karate (black belt, first dan), miniature painting, cooking and hiking.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section class="block" id="contact">
+        <div class="wrap">
+          <h2>Get in touch</h2>
+          <p class="prose">For collaborations, questions about the closed-loop systems, or the stimuli, email is the quickest way.</p>
+          <div class="btn-row">
+            <a class="btn btn--solid" data-link="email" href="#">younes.valibeigi@mail.mcgill.ca</a>
+            <a class="btn" data-link="linkedin" href="#">LinkedIn</a>
+            <a class="btn" data-link="github" href="#">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/js/data/site-config.js"></script>
+  <script src="assets/js/core/layout.js"></script>
+  <script src="assets/js/core/neuron-bg.js"></script>
+  <script src="assets/js/core/figures.js"></script>
+</body>
+</html>

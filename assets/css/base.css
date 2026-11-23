@@ -1,0 +1,107 @@
+/* ==========================================================================
+   base.css  -  design tokens, reset, typography
+   Change colors and fonts here and every page follows.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;   /* the site is dark; also lets the embedded simulations blend in */
+  /* Surface */
+  --black: #000000;
+  --panel: rgba(255, 255, 255, 0.035);
+  --panel-strong: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.12);
+
+  /* Text */
+  --text: #eceff6;
+  --muted: #a2abbd;
+
+  /* Fluorescent palette, sampled from the banner image */
+  --cyan: #1de9f0;
+  --blue: #3d7bff;
+  --violet: #b44dff;
+  --orange: #ff7b1c;
+  --yellow: #ffd21a;
+
+  /* Colors from the DorsalNet paper figures */
+  --class1: #91bfdb;   /* category 1 stimulus (blue) */
+  --class2: #fc8d59;   /* category 2 stimulus (orange) */
+  --res0: #a888c0;     /* early layer (purple) */
+  --res0-deep: #783090;
+  --res2: #78b878;     /* late layer (green) */
+  --res2-deep: #008830;
+
+  /* Per-page accent (overridden by body[data-accent]) */
+  --accent: var(--cyan);
+  --accent-2: var(--blue);
+
+  /* Type */
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
+
+  /* Type scale (1.25) */
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3125rem;
+  --step-2: 1.625rem;
+  --step-3: 2.0625rem;
+  --step-4: 2.625rem;
+  --step-5: clamp(2.75rem, 7vw, 5rem);
+
+  /* Space */
+  --gap: 1.5rem;
+  --radius: 10px;
+  --wrap: 1120px;
+}
+
+body[data-accent="cardiac"] { --accent: var(--orange); --accent-2: var(--yellow); }
+body[data-accent="dorsalnet"] { --accent: var(--violet); --accent-2: var(--blue); }
+body[data-accent="v4"] { --accent: var(--cyan); --accent-2: var(--blue); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: #fff; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6em;
+  color: #fff;
+}
+h1 { font-size: var(--step-5); letter-spacing: -0.035em; font-weight: 800; }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); letter-spacing: -0.01em; }
+h4 { font-size: var(--step-0); }
+
+p { margin: 0 0 1em; }
+ul, ol { margin: 0 0 1em; padding-left: 1.2em; }
+li { margin-bottom: 0.35em; }
+strong { color: #fff; font-weight: 600; }
+code, pre { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.88em; }
+small, .small { font-size: var(--step--1); color: var(--muted); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

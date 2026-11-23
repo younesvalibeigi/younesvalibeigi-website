@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All-optical closed-loop control of living cardiac tissue | Younes Valibeigi</title>
+  <meta name="description" content="A real-time system that couples cultured cardiac monolayers to a GPU simulation through optogenetics, and how the same architecture could train neural tissue.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+<body data-root="../" data-page="cardiac" data-accent="cardiac">
+  <canvas id="neuron-bg" aria-hidden="true"></canvas>
+
+  <div class="page">
+    <main>
+      <!-- ============ HERO ============ -->
+      <section class="page-hero">
+        <div class="wrap">
+          <div class="page-hero__rule"></div>
+          <p><a href="projects.html">&larr; All projects</a></p>
+          <h1>Real-time GPU-accelerated coupled cardiac system: Integrating bidirectional interactions between living optogenetic monolayers and computational simulations</h1>
+          <p class="page-hero__sub">A dish of cultured mouse cardiac cells and a GPU simulation of cardiac tissue run side by side and respond to each other within milliseconds.</p>
+          <ul class="tags" style="margin-top:1.4rem">
+            <li><span class="tag">Published, PLOS Computational Biology 2026</span></li>
+            <li><span class="tag tag--muted">Valibeigi, Kaboudian, Fenton, Bub</span></li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--solid" data-link="cardiacPaper" href="#">Read the paper</a>
+            <a class="btn" data-link="cardiacRepo" href="#">Code on GitHub</a>
+            <a class="btn" href="#install">Installation</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ OVERVIEW ============ -->
+      <section class="block" id="overview">
+        <div class="wrap split">
+          <div>
+            <h2>What it does</h2>
+            <div class="prose">
+              <p>Reentrant arrhythmias start when an electrical wave keeps circling through heart tissue. They are hard to study because the experimenter has little control over the circuit.</p>
+              <p>Our system gives that control. A camera watches a monolayer of cultured mouse ventricular cells for contraction waves. A cardiac simulation, written with the Abubu.js WebGL library and running on a graphics card, works out where a wave should be. An Arduino then turns the result into a pattern on an 8 by 8 LED matrix, and the blue light depolarizes cells that express channelrhodopsin-2.</p>
+              <p>Earlier optical closed-loop setups mostly stimulated after a fixed delay following a detected wave. Here the model decides when and where to stimulate, so the tissue changes the stimulus and the stimulus changes the tissue. The whole rig is built from inexpensive parts and a 30 frames-per-second machine-vision camera.</p>
+            </div>
+          </div>
+          <figure class="fig">
+            <div class="fig__frame">
+              <img src="../assets/img/cardiac/fig1_concept.png" alt="Figure 1: a cellular automaton model of a heart with a reentrant wave, a monolayer grown around an obstacle, a fixed-delay loop, and the full coupled system" data-asset="assets/img/cardiac/fig1_concept.png" data-label="Figure 1, concept">
+            </div>
+            <figcaption><strong>Fixed delay versus a coupled model.</strong> (A, B) A reentrant wave circling an obstacle in a 3D heart model and in a monolayer. (C) A closed loop with a fixed delay. (D) The full system: signals from the tissue update the model, and the model's predictions drive stimulation.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ HOW IT WORKS ============ -->
+      <section class="block" id="how">
+        <div class="wrap">
+          <div class="block__head">
+            <h2>How the loop works</h2>
+            <p>Four stages, repeated for every wave.</p>
+          </div>
+          <div class="split">
+            <ol class="steps">
+              <li><strong>Detect</strong>Motion detection on camera frames (each frame minus the one six frames earlier) shows contraction waves without voltage-sensitive dyes, so recordings can run for a long time. Two regions of interest give the wave's speed and an estimate of when it will reach a target region.</li>
+              <li><strong>Simulate</strong>A cellular automaton with a 256 by 256 grid runs in Abubu.js. Its excitability radius and threshold can be changed during an experiment, which gives planar waves and spirals.</li>
+              <li><strong>Synchronize</strong>The camera's TTL pulse counts frames on the Arduino, so the camera acts as the clock. The Arduino waits the computed delay itself and skips the variable latency of sockets and serial links.</li>
+              <li><strong>Stimulate</strong>The LED matrix lights the pattern the simulation asked for, below the tissue, at the moment the model predicts.</li>
+            </ol>
+            <figure class="fig">
+              <div class="fig__frame">
+                <img src="../assets/img/cardiac/fig2_system_overview.png" alt="Figure 2: WebGL simulation, Node.js, microcontroller, LED matrix, cardiac tissue and camera connected in a loop" data-asset="assets/img/cardiac/fig2_system_overview.png" data-label="Figure 2, system overview">
+              </div>
+              <figcaption><strong>The loop.</strong> Node.js passes data between the simulation, the camera and the microcontroller over sockets, serial and TCP.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TIMING ============ -->
+      <section class="block" id="timing">
+        <div class="wrap split">
+          <div>
+            <h2>Timing and what the loop can do</h2>
+            <dl class="facts">
+              <dt>Jitter</dt>
+              <dd>Standard deviation of the stimulation cycle period fell from 11.34 ms to 1.53 ms once the camera and microcontroller were synchronized.</dd>
+              <dt>Camera</dt>
+              <dd>A 30 fps camera is enough, because two regions of interest give sub-frame timing.</dd>
+              <dt>Proof of concept</dt>
+              <dd>Model-driven stimulation redirected waves in the monolayer away from their intrinsic direction. A fixed-delay protocol redirected them too, with more variable cycle periods.</dd>
+              <dt>Limits</dt>
+              <dd>Validated in monolayers only. The model assumes a constant wave speed.</dd>
+            </dl>
+          </div>
+          <figure class="fig">
+            <div class="fig__frame">
+              <img src="../assets/img/cardiac/fig6_optical_setup.png" alt="Figure 6: optical layout with Basler camera, DMD projector, Olympus MVX10, Nikon Eclipse Ti-U, LEDs and photodiode" data-asset="assets/img/cardiac/fig6_optical_setup.png" data-label="Figure 6, optical setup">
+            </div>
+            <figcaption><strong>Optical setup.</strong> A camera images the monolayer from above through an Olympus MVX10; the LED matrix stimulates from below through a Nikon Eclipse Ti-U. A DMD projector creates artificial waves for validation, and a photodiode measures the light output.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="block" id="model">
+        <div class="wrap split">
+          <figure class="fig">
+            <div class="fig__frame">
+              <img src="../assets/img/cardiac/fig3_ca_model.png" alt="Figure 3: simulated planar wave and spiral wave from the cellular automaton model" data-asset="assets/img/cardiac/fig3_ca_model.png" data-label="Figure 3, cellular automaton">
+            </div>
+            <figcaption><strong>The simulation.</strong> (A) Planar waves. (B) A spiral wave. Color is cell voltage from 0 to 1; r and &theta; are the model's radius of excitability and threshold.</figcaption>
+          </figure>
+          <div>
+            <h2>The model is swappable</h2>
+            <div class="prose">
+              <p>The cellular automaton is fast and has two knobs, which makes it a good first model. The same framework can host differential-equation models such as Fenton-Karma or O'Hara-Virág-Varró-Rudy, and the paper points to tuning the model until it reproduces the tissue's own waves, which would give a digital cardiac twin.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live simulations. Each one is its own small page in assets/sim/ and is shown in an iframe. -->
+        <div class="wrap sims" id="try-it">
+          <div class="block__head">
+            <h3>Try the model</h3>
+            <p>Both simulations below run live in your browser, on your graphics card. They use the same cellular-automaton rule, with the same two knobs: the radius of excitability and the threshold. Use the bar beside each canvas to change them, to switch colors, to speed up or pause.</p>
+          </div>
+
+          <article class="sim-card">
+            <h4>2D tissue</h4>
+            <p class="sim-card__how"><strong>Drag</strong> across the canvas to stimulate the tissue. <strong>Shift and drag</strong>, or choose "Place block" in the Draw menu, puts down a block that waves cannot cross. A wave that meets the end of a block can curl around it, which is how a spiral wave starts.</p>
+            <iframe data-sim="../assets/sim/ca2d/index.html" title="Live 2D cellular automaton simulation of cardiac tissue" name="ca2d" class="sim-card__frame"></iframe>
+          </article>
+
+          <article class="sim-card">
+            <h4>3D heart</h4>
+            <p class="sim-card__how"><strong>Drag</strong> to rotate the heart. <strong>Double-click</strong> a spot on it to stimulate; holding Ctrl (or Cmd) and moving the mouse stimulates along the path. <strong>Shift and click</strong> places a block. On a phone, double-tap to stimulate and use the Draw menu to place blocks.</p>
+            <iframe data-sim="../assets/sim/ca3d/index.html" title="Live 3D cellular automaton simulation of a heart" name="ca3d" class="sim-card__frame"></iframe>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ INSTALL ============ -->
+      <section class="block" id="install">
+        <div class="wrap">
+          <div class="block__head">
+            <h2>Code and installation</h2>
+            <p>The repository is MIT licensed and written for people with limited coding experience. Exact versions, wiring and screenshots are in its README.</p>
+          </div>
+          <div class="btn-row" style="margin:0 0 2rem">
+            <a class="btn btn--solid" data-link="cardiacRepo" href="#">Open Coupled-Cardiac-System on GitHub</a>
+          </div>
+
+          <div class="split">
+            <div>
+              <h3>You need</h3>
+              <ul>
+                <li>Node.js and npm</li>
+                <li>A Basler camera and the Pylon SDK (6.0.1, development version)</li>
+                <li>Visual Studio, to compile the camera program</li>
+                <li>Arduino IDE, an Arduino Uno, an 8 by 8 DotStar LED matrix and the Adafruit DotStarMatrix library</li>
+                <li>Cardiac monolayers expressing channelrhodopsin-2 (protocol in the paper's supporting information)</li>
+              </ul>
+
+              <h3>Repository layout</h3>
+              <ul>
+                <li><code>ServerClient_CellularAutomaton_Simulation/</code> for the model-driven loop</li>
+                <li><code>ServerClient_FixedDelay/</code> for the fixed-delay loop</li>
+                <li><code>ServerClient_FKModel/</code> for the Fenton-Karma model</li>
+                <li><code>cpp_Camera-Code/</code> for camera acquisition and wave detection</li>
+                <li><code>Python_Data-Analysis/</code> for timing analysis</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>Set up the server</h3>
+              <div class="code"><button type="button">Copy</button><pre>npm init            # set the entry point to server.js
+npm install express
+npm install socket.io
+npm install serialport
+npm install @serialport/parser-readline</pre></div>
+
+              <h3>Run it</h3>
+              <ol class="steps">
+                <li><strong>Camera</strong>In Pylon Viewer set exposure to 30000 µs, 30 frames per second, and Line 3 as an output driven by Exposure Active. Close Pylon Viewer, then build the Grab program in Visual Studio (Release, x64).</li>
+                <li><strong>Arduino</strong>Wire the LED matrix as described in the README and upload <code>ArduinoCode.ino</code>.</li>
+                <li><strong>Server</strong>Start it, then open the simulation in a browser:
+                  <div class="code" style="margin-top:.6rem"><button type="button">Copy</button><pre>node server.js
+# then visit http://localhost:8081/</pre></div>
+                </li>
+                <li><strong>Camera program</strong>Run <code>Grab</code> from its Release folder. Press <code>s</code> to save the last 500 frames and <code>q</code> to quit. Put <code>camera_input.txt</code> and <code>threshold.txt</code> next to <code>Grab.exe</code>; they hold the regions of interest, refractory frames (20 at 30 fps) and detection thresholds.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="cite">
+        <div class="wrap">
+          <h2>Cite this work</h2>
+          <p class="cite">Valibeigi Y, Kaboudian A, Fenton F, Bub G (2026) Real-time GPU-accelerated coupled cardiac system: Integrating bidirectional interactions between living optogenetic monolayers and computational simulations. PLoS Comput Biol 22(8): e1014590. <a href="https://doi.org/10.1371/journal.pcbi.1014590" target="_blank" rel="noopener">https://doi.org/10.1371/journal.pcbi.1014590</a></p>
+          <p class="small">Figures are from the paper, published under a Creative Commons Attribution (CC BY) license.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/data/site-config.js"></script>
+  <script src="../assets/js/core/layout.js"></script>
+  <script src="../assets/js/core/neuron-bg.js"></script>
+  <script src="../assets/js/core/figures.js"></script>
+  <script src="../assets/js/pages/sim-embed.js"></script>
+</body>
+</html>

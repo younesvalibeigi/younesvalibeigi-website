@@ -1,0 +1,78 @@
+/* ==========================================================================
+   stimuli.css  -  DorsalNet page: layer sections, gallery, loss chart
+   --layer is set per section (res0 purple, res2 green, from the paper figures).
+   ========================================================================== */
+
+.layer { --layer: var(--res0); }
+.layer--res2 { --layer: var(--res2); }
+.layer h2 { color: var(--layer); }
+.layer .fig__frame { box-shadow: 0 0 0 1px var(--layer), 0 0 34px -8px var(--layer); }
+.layer__tag {
+  display: inline-block; font-family: var(--font-display); font-weight: 600;
+  font-size: var(--step--1); color: #000; background: var(--layer);
+  border-radius: 999px; padding: 0.15rem 0.8rem; margin-bottom: 0.9rem;
+  box-shadow: 0 0 16px -2px var(--layer);
+}
+
+/* ----- Reading guide (legend + size control) ----- */
+.guide { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; align-items: center; margin-bottom: 1.6rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; font-family: var(--font-display); font-size: var(--step--1); }
+.legend__item { display: flex; align-items: center; gap: 0.55rem; color: var(--text); }
+.legend__swatch { width: 22px; height: 22px; border-radius: 4px; border: 4px solid var(--swatch); background: #000; }
+.fade-bar {
+  display: inline-block; width: 120px; height: 12px; border-radius: 6px;
+  background: linear-gradient(90deg, rgba(145,191,219,.2), rgba(145,191,219,.95));
+}
+.size-control { display: flex; align-items: center; gap: 0.7rem; font-family: var(--font-display); font-size: var(--step--1); color: var(--muted); }
+.size-control input { accent-color: var(--accent); width: 150px; }
+
+/* ----- Gallery ----- */
+.gallery { --stim-size: 64px; --b: 6px; margin: 1.4rem 0 2rem; }
+.gallery__grid {
+  display: grid; gap: 0.9rem;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--stim-size) * 2 + var(--b) * 4 + 3rem), 1fr));
+}
+.pair {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+  padding: 0.7rem 0.7rem 0.6rem; text-align: center;
+}
+.pair--optimum { border-color: var(--layer); box-shadow: 0 0 28px -8px var(--layer); }
+.pair__imgs { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 0.55rem; }
+.pair__name { font-family: var(--font-display); font-weight: 600; color: #fff; font-size: var(--step--1); line-height: 1.2; }
+.pair__human { display: inline-block; margin-top: 0.25rem; font-family: var(--font-display); font-size: 0.72rem; color: var(--layer); }
+
+.stim {
+  position: relative; width: calc(var(--stim-size) + var(--b) * 2); height: calc(var(--stim-size) + var(--b) * 2);
+  border: var(--b) solid; border-radius: 3px; background: #000;
+  transition: transform .12s ease;
+}
+.stim img { width: 100%; height: 100%; object-fit: cover; image-rendering: auto; }
+.stim:hover { transform: scale(2.5); z-index: 30; }
+.stim.is-missing {
+  display: grid; place-content: center; font: 500 0.62rem/1.2 var(--font-display);
+  color: var(--muted); text-align: center; padding: 2px;
+}
+.stim.is-missing:hover { transform: none; }
+
+/* ----- Losses ----- */
+.losses { display: grid; gap: 1.5rem; grid-template-columns: 1.1fr 1fr; align-items: start; }
+@media (max-width: 900px) { .losses { grid-template-columns: 1fr; } }
+.loss-chart { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1rem 0.6rem; }
+.loss-chart svg { width: 100%; height: auto; display: block; }
+.loss-chart .axis text { fill: var(--muted); font: 500 12.5px var(--font-display); }
+.loss-chart .grid line { stroke: rgba(255,255,255,.08); }
+.loss-chart .band { fill: var(--layer); opacity: 0.1; }
+.loss-chart .band-label { fill: var(--layer); font: 500 12.5px var(--font-display); }
+.loss-chart .line { fill: none; stroke: var(--layer); stroke-width: 2.4; filter: drop-shadow(0 0 4px var(--layer)); }
+.loss-chart .dot { fill: #000; stroke: var(--layer); stroke-width: 2; }
+.loss-chart figcaption { color: var(--muted); font-size: var(--step--1); margin: 0.4rem 0 0.4rem; }
+.losses__images { display: grid; gap: 1.25rem; }
+
+/* ----- Layer diagram ----- */
+.diagram { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; }
+.diagram svg { width: 100%; height: auto; display: block; }
+.diagram text { font-family: var(--font-display); }
+
+/* Layer intro: text left, activation-space figure right */
+.layer .split { grid-template-columns: minmax(0, 1fr) minmax(0, 0.75fr); }
+@media (max-width: 860px) { .layer .split { grid-template-columns: 1fr; } }
