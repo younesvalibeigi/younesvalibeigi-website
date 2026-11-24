@@ -18,6 +18,8 @@ window.SITE = {
 
     // Temporary repository. Replace when the cleaned-up version is ready.
     dorsalnetRepo: "https://github.com/younesvalibeigi/VPL_DorsalNet",
+    
+    dorsalnetData: "https://github.com/younesvalibeigi/younesvalibeigi-website/releases/download/paper-data-v1/Paper_Data.zip",
 
     behaviorRepo: "https://github.com/younesvalibeigi/Behavior_MonkeyLogic"
   },
